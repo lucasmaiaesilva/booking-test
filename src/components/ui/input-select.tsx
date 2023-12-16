@@ -9,9 +9,14 @@ import {
 } from "@/components/ui/select";
 import { places } from "@/utils/places";
 
-export const InputSelect = () => {
+type InputSelect = {
+  value: string;
+  onChange: (value: string) => void;
+};
+
+export const InputSelect = ({ value, onChange }: InputSelect) => {
   return (
-    <Select>
+    <Select defaultValue={value} onValueChange={onChange}>
       <SelectTrigger className="py-7">
         <SelectValue placeholder="Where are you going?" />
       </SelectTrigger>

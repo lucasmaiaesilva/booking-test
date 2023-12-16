@@ -6,15 +6,21 @@ import {
 // import { FormControl } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { format } from "date-fns";
+import { format, subDays } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "lucide-react";
 
-export const InputCalendar = () => {
-  const field = {
-    value: new Date(),
-  };
+type InputCalendar = {
+  placeholderText: string;
+  value: Date | null;
+  onChange: (value: Date | null) => void;
+};
 
+export const InputCalendar = ({
+  value,
+  placeholderText,
+  onChange,
+}: InputCalendar) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -23,19 +29,18 @@ export const InputCalendar = () => {
           size="lg"
           className={cn(
             "w-full pl-3 text-left font-normal py-7",
-            !field.value && "text-muted-foreground"
+            !value && "text-muted-foreground"
           )}
         >
-          {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
+          {value ? format(value, "PPP") : <span>{placeholderText}</span>}
           <CalendarIcon className="w-4 h-4 ml-auto opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0" align="center">
         <Calendar
           mode="single"
-          disabled={(date) =>
-            date > new Date() || date < new Date("1900-01-01")
-          }
+          onSelect={(e) => onChange(e as Date)}
+          disabled={(date) => date < subDays(new Date(), 1)}
           initialFocus
         />
       </PopoverContent>
