@@ -31,7 +31,7 @@ function App() {
 
       <main className="flex-1 bg-slate-100 pt-14">
         <div className="container">
-          <form className="relative flex items-center w-full h-full bg-white shadow-2xl -mt-60 px-7 lg:-mt-28 lg:h-28 lg:rounded-3xl rounded-xl">
+          <form className="relative z-20 flex items-center w-full h-full bg-white shadow-2xl -mt-60 px-7 lg:-mt-28 lg:h-28 lg:rounded-3xl rounded-xl">
             <div className="flex flex-col w-full gap-6 pb-8 mt-10 lg:mt-0 lg:flex-row lg:p-0">
               <InputSelect />
               <InputCalendar />
