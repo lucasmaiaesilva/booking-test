@@ -1,11 +1,10 @@
-export type BookingType = {
-  id?: number;
-  destination?: string;
-  startDate: Date;
-  endDate: Date;
-};
+import { z } from "zod";
 
-export type BookingState = {
-  booking: BookingType[];
-  currentBooking: BookingType;
-};
+export const FormSchema = z.object({
+  id: z.string(),
+  destination: z.string(),
+  startDate: z.date().nullable(),
+  endDate: z.date().nullable(),
+});
+
+export type BookingType = z.infer<typeof FormSchema>;

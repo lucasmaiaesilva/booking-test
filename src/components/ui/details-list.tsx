@@ -8,10 +8,12 @@ import { useBookingContext } from "@/hooks/booking";
 import { EmptyState } from "@/components/ui/empty-state";
 
 export const DetailsList = () => {
-  const handleEditItem = () => {};
-  const handleRemoveItem = () => {};
+  const { booking, setBooking } = useBookingContext();
 
-  const { booking } = useBookingContext();
+  const handleEditItem = () => {};
+  const handleRemoveItem = (id: string) => {
+    setBooking((prev: BookingType[]) => prev.filter((item) => item.id !== id));
+  };
 
   if (booking?.length === 0) {
     return <EmptyState text="No booking data" />;
@@ -35,9 +37,11 @@ export const DetailsList = () => {
                     <CalendarCheck2 className="mr-1.5 h-5 w-5 flex-shrink-0 text-slate-400" />
                     check-in
                   </div>
-                  <span className="px-1.5 bg-slate-200 text-slate-500 rounded font-semibold w-fit flex-1">
-                    {format(new Date(item.startDate), "PPP")}
-                  </span>
+                  {item.startDate ? (
+                    <span className="px-1.5 bg-slate-200 text-slate-500 rounded font-semibold w-fit flex-1">
+                      {format(new Date(item.startDate), "PPP")}
+                    </span>
+                  ) : null}
                 </div>
 
                 <div className="flex justify-between gap-2 mt-2 text-sm text-slate-500">
@@ -45,9 +49,11 @@ export const DetailsList = () => {
                     <CalendarX2 className="mr-1.5 h-5 w-5 flex-shrink-0 text-slate-400" />
                     check-out
                   </div>
-                  <span className="px-1.5 bg-slate-200 text-slate-500 rounded font-semibold w-fit flex-1">
-                    {format(new Date(item.endDate), "PPP")}
-                  </span>
+                  {item.endDate ? (
+                    <span className="px-1.5 bg-slate-200 text-slate-500 rounded font-semibold w-fit flex-1">
+                      {format(new Date(item.endDate), "PPP")}
+                    </span>
+                  ) : null}
                 </div>
               </div>
             </div>
@@ -67,7 +73,7 @@ export const DetailsList = () => {
               <span>
                 <Button
                   type="button"
-                  onClick={() => handleRemoveItem()}
+                  onClick={() => handleRemoveItem(item.id)}
                   className="flex items-center gap-1 px-2"
                 >
                   <Trash2 className="w-4 h-4" />
