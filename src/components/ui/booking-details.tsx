@@ -2,7 +2,7 @@ import { DetailsList } from "./details-list";
 
 export const BookingDetails = () => {
   return (
-    <section className="mt-4 border-t divide-slate-100 border-slate-100">
+    <section className="mt-4 mb-24 border-t divide-slate-100 border-slate-100">
       <h2 className="mt-4 font-semibold text-indigo-500 dark:text-indigo-400">
         Management
       </h2>

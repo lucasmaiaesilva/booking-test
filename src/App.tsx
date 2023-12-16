@@ -13,10 +13,10 @@ function App() {
 
         <div className="bg-[#ca4d66] absolute inset-0 opacity-50" />
 
-        <div className="absolute inset-0 left-0 right-0 z-20 mx-auto">
-          <div className="container grid items-center h-full grid-cols-2 gap-4">
+        <div className="absolute inset-0 bottom-0 left-0 right-0 z-20 mx-auto">
+          <div className="container items-center h-full lg:grid lg:grid-cols-2 lg:gap-4">
             <div />
-            <div>
+            <div className="flex flex-col justify-center h-full">
               <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-6xl">
                 Your next dream destination
               </h1>
@@ -27,21 +27,23 @@ function App() {
             </div>
           </div>
         </div>
-
-        <form className="container absolute left-0 right-0 z-40 flex items-center w-full mx-auto bg-white shadow-2xl h-28 rounded-3xl -bottom-14">
-          <div className="flex w-full gap-6">
-            <InputSelect />
-            <InputCalendar />
-            <InputCalendar />
-            <Button size="lg" className="py-7">
-              Add Destination
-            </Button>
-          </div>
-        </form>
       </section>
 
       <main className="flex-1 bg-slate-100 pt-14">
         <div className="container">
+          <form className="relative flex items-center w-full h-full bg-white shadow-2xl -mt-60 px-7 lg:-mt-28 lg:h-28 lg:rounded-3xl rounded-xl">
+            <div className="flex flex-col w-full gap-6 pb-8 mt-10 lg:mt-0 lg:flex-row lg:p-0">
+              <InputSelect />
+              <InputCalendar />
+              <InputCalendar />
+              <Button size="lg" className="py-7">
+                Add Destination
+              </Button>
+            </div>
+          </form>
+        </div>
+
+        <div className="container mt-8">
           <BookingDetails />
         </div>
       </main>

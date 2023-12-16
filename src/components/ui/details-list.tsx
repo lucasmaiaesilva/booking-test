@@ -48,28 +48,28 @@ export const DetailsList = () => {
                 {item.destination}
               </h2>
               <div className="flex flex-col mt-1 sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6">
-                <div className="flex flex-col gap-2 mt-2 text-sm text-slate-500 sm:flex-row">
+                <div className="flex justify-between gap-2 mt-2 text-sm text-slate-500">
                   <div className="flex flex-row">
                     <CalendarCheck2 className="mr-1.5 h-5 w-5 flex-shrink-0 text-slate-400" />
                     check-in
                   </div>
-                  <span className="px-1.5 bg-slate-200 text-slate-500 rounded font-semibold w-fit">
+                  <span className="px-1.5 bg-slate-200 text-slate-500 rounded font-semibold w-fit flex-1">
                     {format(new Date(item.startDate), "PPP")}
                   </span>
                 </div>
 
-                <div className="flex flex-col gap-2 mt-2 text-sm text-slate-500 sm:flex-row">
+                <div className="flex justify-between gap-2 mt-2 text-sm text-slate-500">
                   <div className="flex flex-row">
                     <CalendarX2 className="mr-1.5 h-5 w-5 flex-shrink-0 text-slate-400" />
                     check-out
                   </div>
-                  <span className="px-1.5 bg-slate-200 text-slate-500 rounded font-semibold w-fit">
+                  <span className="px-1.5 bg-slate-200 text-slate-500 rounded font-semibold w-fit flex-1">
                     {format(new Date(item.endDate), "PPP")}
                   </span>
                 </div>
               </div>
             </div>
-            <div className="flex mt-5 lg:ml-4 lg:mt-0">
+            <div className="flex justify-end gap-2 mt-5 lg:ml-4 lg:mt-0">
               <span className="sm:block">
                 <Button
                   variant="outline"
@@ -82,7 +82,7 @@ export const DetailsList = () => {
                 </Button>
               </span>
 
-              <span className="sm:ml-3">
+              <span>
                 <Button
                   type="button"
                   onClick={() => handleRemoveItem()}
