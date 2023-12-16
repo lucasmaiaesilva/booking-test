@@ -1,5 +1,6 @@
 import { InputCalendar } from "@/components/ui/input-calendar";
 import { Button } from "@/components/ui/button";
+import { InputSelect } from "@/components/ui/input-select";
 
 function App() {
   return (
@@ -21,11 +22,12 @@ function App() {
         </div>
 
         <form className="container absolute left-0 right-0 z-40 flex items-center w-full mx-auto bg-white shadow-2xl h-28 rounded-3xl -bottom-14">
-          <div className="flex w-full gap-8">
+          <div className="flex w-full gap-6">
+            <InputSelect />
             <InputCalendar />
             <InputCalendar />
             <Button size="lg" className="py-7">
-              Book
+              Add Destination
             </Button>
           </div>
         </form>
