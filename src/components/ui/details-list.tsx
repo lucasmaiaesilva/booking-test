@@ -3,37 +3,19 @@ import { CalendarCheck2, CalendarX2 } from "lucide-react";
 import { BookingType } from "@/types/booking";
 import { Button } from "@/components/ui/button";
 import { Trash2, Pencil } from "lucide-react";
+import { useBookingContext } from "@/hooks/booking";
 
-// import { EmptyState } from '@/components'
+import { EmptyState } from "@/components/ui/empty-state";
 
 export const DetailsList = () => {
   const handleEditItem = () => {};
   const handleRemoveItem = () => {};
 
-  // if (booking?.length === 0) {
-  //   return <EmptyState text="No booking data" />
-  // }
+  const { booking } = useBookingContext();
 
-  const booking: BookingType[] = [
-    {
-      id: 1,
-      destination: "Paris",
-      startDate: new Date(),
-      endDate: new Date(),
-    },
-    {
-      id: 2,
-      destination: "Aparecida do Norte",
-      startDate: new Date(),
-      endDate: new Date(),
-    },
-    {
-      id: 3,
-      destination: "Aparecida do Norte",
-      startDate: new Date(),
-      endDate: new Date(),
-    },
-  ];
+  if (booking?.length === 0) {
+    return <EmptyState text="No booking data" />;
+  }
 
   return (
     <>
