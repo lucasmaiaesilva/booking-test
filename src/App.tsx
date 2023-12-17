@@ -25,6 +25,10 @@ function App() {
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
+    // const { formState } = form;
+    // const { isSubmitting } = formState;
+    // if (isSubmitting) return;
+
     const isEditMode = data.id !== ""; // false: new booking, true: edit booking
     const payload = {
       ...data,
@@ -42,11 +46,10 @@ function App() {
         // get the index of the item in the list of bookings
         const index = prev.findIndex((booking) => booking.id === data.id);
 
-        // remove item by index
-        const bookingListWithoutEditedItem = prev.filter((_, i) => i !== index);
+        const updatedList: BookingType[] = prev;
+        updatedList.splice(index, 1, payload);
 
-        //update list
-        return [...bookingListWithoutEditedItem, payload];
+        return updatedList;
       });
     }
 
