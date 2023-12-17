@@ -4,13 +4,15 @@ import { BookingType } from "@/types/booking";
 import { Button } from "@/components/ui/button";
 import { Trash2, Pencil } from "lucide-react";
 import { useBookingContext } from "@/hooks/booking";
-
+import { BookingRenderProps } from "@/components/ui/booking-details";
 import { EmptyState } from "@/components/ui/empty-state";
 
-export const DetailsList = () => {
+export const DetailsList = ({ onEditItem }: BookingRenderProps) => {
   const { booking, setBooking } = useBookingContext();
 
-  const handleEditItem = () => {};
+  const handleEditItem = (item: BookingType) => {
+    onEditItem(item);
+  };
   const handleRemoveItem = (id: string) => {
     setBooking((prev: BookingType[]) => prev.filter((item) => item.id !== id));
   };
@@ -62,7 +64,7 @@ export const DetailsList = () => {
                 <Button
                   variant="outline"
                   type="button"
-                  onClick={() => handleEditItem()}
+                  onClick={() => handleEditItem(item)}
                   className="flex items-center gap-1 px-2"
                 >
                   <Pencil className="w-4 h-4" />

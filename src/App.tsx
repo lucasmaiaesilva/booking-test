@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { InputSelect } from "@/components/ui/input-select";
 import { BookingDetails } from "@/components/ui/booking-details";
 import { useBookingContext } from "@/hooks/booking";
-import { FormSchema } from "@/types/booking";
+import { BookingType, FormSchema } from "@/types/booking";
 
 function App() {
   const { setBooking } = useBookingContext();
@@ -25,15 +25,33 @@ function App() {
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
+    const isEditMode = data.id !== ""; // false: new booking, true: edit booking
     const payload = {
       ...data,
-      id: uuid(),
+      id: isEditMode ? data.id : uuid(),
     };
-    console.log("SUBMIT", payload);
 
-    setBooking((prev) => {
-      return [...prev, payload];
-    });
+    if (!isEditMode) {
+      // create new booking
+      setBooking((prev) => {
+        return [...prev, payload];
+      });
+    } else {
+      // edit existing booking
+      setBooking((prev) => {
+        // get the index of the item in the list of bookings
+        const index = prev.findIndex((booking) => booking.id === data.id);
+
+        // remove item by index
+        const bookingListWithoutEditedItem = prev.filter((_, i) => i !== index);
+
+        //update list
+        return [...bookingListWithoutEditedItem, payload];
+      });
+    }
+
+    const { reset } = form;
+    reset();
 
     // toast({
     //   title: "You submitted the following values:",
@@ -43,6 +61,15 @@ function App() {
     //     </pre>
     //   ),
     // });
+  }
+
+  function onEditItem(item: BookingType) {
+    // fill the form with the data to be edited
+    const { setValue } = form;
+    setValue("id", item.id);
+    setValue("destination", item.destination);
+    setValue("startDate", item.startDate);
+    setValue("endDate", item.endDate);
   }
 
   return (
@@ -100,7 +127,7 @@ function App() {
         </div>
 
         <div className="container mt-8">
-          <BookingDetails />
+          <BookingDetails onEditItem={onEditItem} />
         </div>
       </main>
     </div>

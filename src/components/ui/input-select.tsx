@@ -16,7 +16,7 @@ type InputSelect = {
 
 export const InputSelect = ({ value, onChange }: InputSelect) => {
   return (
-    <Select defaultValue={value} onValueChange={onChange}>
+    <Select value={value} onValueChange={onChange}>
       <SelectTrigger className="py-7">
         <SelectValue placeholder="Where are you going?" />
       </SelectTrigger>
