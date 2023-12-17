@@ -6,8 +6,12 @@ import { Trash2, Pencil } from "lucide-react";
 import { useBookingContext } from "@/hooks/booking";
 import { BookingRenderProps } from "@/components/ui/booking-details";
 import { EmptyState } from "@/components/ui/empty-state";
+import { cn } from "@/lib/utils";
 
-export const DetailsList = ({ onEditItem }: BookingRenderProps) => {
+export const DetailsList = ({
+  onEditItem,
+  indexEdited,
+}: BookingRenderProps) => {
   const { booking, setBooking } = useBookingContext();
 
   const handleEditItem = (item: BookingType) => {
@@ -21,14 +25,24 @@ export const DetailsList = ({ onEditItem }: BookingRenderProps) => {
     return <EmptyState text="No booking data" />;
   }
 
+  console.log({ indexEdited });
+
   return (
     <>
       <ul>
-        {booking?.map((item: BookingType) => (
+        {booking?.map((item: BookingType, index) => (
           <li
             key={item.id}
-            className="p-6 my-4 bg-white border-2 lg:flex lg:items-center lg:justify-between rounded-xl border-slate-200"
+            className={cn(
+              "relative p-6 my-4 overflow-hidden bg-white border-2 lg:flex lg:items-center lg:justify-between rounded-xl",
+              indexEdited === index
+                ? "border-dashed border-slate-400/70"
+                : "border-slate-200"
+            )}
           >
+            {indexEdited === index ? (
+              <div className="absolute inset-0 bg-white/80" />
+            ) : null}
             <div className="flex-1 min-w-0">
               <h2 className="text-lg font-semibold leading-7 text-slate-600 sm:truncate sm:text-xl sm:tracking-tight">
                 {item.destination}

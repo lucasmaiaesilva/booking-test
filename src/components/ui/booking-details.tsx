@@ -3,9 +3,13 @@ import { DetailsList } from "./details-list";
 
 export type BookingRenderProps = {
   onEditItem: (item: BookingType) => void;
+  indexEdited: number;
 };
 
-export const BookingDetails = ({ onEditItem }: BookingRenderProps) => {
+export const BookingDetails = ({
+  onEditItem,
+  indexEdited,
+}: BookingRenderProps) => {
   return (
     <section className="mt-4 mb-24 border-t divide-slate-100 border-slate-100">
       <h2 className="mt-4 font-semibold text-indigo-500 dark:text-indigo-400">
@@ -15,7 +19,7 @@ export const BookingDetails = ({ onEditItem }: BookingRenderProps) => {
         Booking Details
       </p>
       <div className="mt-6 lg:mt-8">
-        <DetailsList onEditItem={onEditItem} />
+        <DetailsList onEditItem={onEditItem} indexEdited={indexEdited} />
       </div>
     </section>
   );

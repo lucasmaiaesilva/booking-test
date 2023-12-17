@@ -13,7 +13,7 @@ import { useBookingContext } from "@/hooks/booking";
 import { BookingType, FormSchema } from "@/types/booking";
 
 function App() {
-  const { setBooking } = useBookingContext();
+  const { booking: bookings, setBooking } = useBookingContext();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -24,11 +24,12 @@ function App() {
     },
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    // const { formState } = form;
-    // const { isSubmitting } = formState;
-    // if (isSubmitting) return;
+  const { formState, watch } = form;
+  const { isSubmitting } = formState;
+  const id = watch("id");
+  const index = bookings.findIndex((booking) => booking.id === id);
 
+  function onSubmit(data: z.infer<typeof FormSchema>) {
     const isEditMode = data.id !== ""; // false: new booking, true: edit booking
     const payload = {
       ...data,
@@ -121,8 +122,13 @@ function App() {
                   )}
                 />
 
-                <Button size="lg" className="py-7" type="submit">
-                  Add Destination
+                <Button
+                  size="lg"
+                  className="py-7"
+                  type="submit"
+                  disabled={isSubmitting}
+                >
+                  {id !== "" ? "Update Destination" : "Add Destination"}
                 </Button>
               </div>
             </form>
@@ -130,7 +136,7 @@ function App() {
         </div>
 
         <div className="container mt-8">
-          <BookingDetails onEditItem={onEditItem} />
+          <BookingDetails onEditItem={onEditItem} indexEdited={index} />
         </div>
       </main>
     </div>
