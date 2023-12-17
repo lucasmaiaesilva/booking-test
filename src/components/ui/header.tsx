@@ -1,6 +1,6 @@
 export function Header() {
   return (
-    <section className="relative bg-[url('hero-background.jpeg')] bg-no-repeat bg-cover bg-left h-[70dvh]">
+    <section className="relative bg-[url('../../../public/hero-background.jpeg')] bg-no-repeat bg-cover bg-left h-[70dvh]">
       <header className="container absolute inset-0 left-0 right-0 z-20 flex items-center h-16 mx-auto font-semibold">
         <span className="text-xl text-white">easyBooking</span>
       </header>
