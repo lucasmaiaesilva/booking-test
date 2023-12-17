@@ -2,9 +2,10 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { v4 as uuid } from "uuid";
+import { format } from "date-fns";
 import { Form, FormField } from "@/components/ui/form";
 import { Header } from "@/components/ui/header";
-// import { toast } from "@/components/ui/use-toast";
+import { useToast } from "@/components/ui/use-toast";
 import { InputCalendar } from "@/components/ui/input-calendar";
 import { Button } from "@/components/ui/button";
 import { InputSelect } from "@/components/ui/input-select";
@@ -13,6 +14,7 @@ import { useBookingContext } from "@/hooks/booking";
 import { BookingType, FormSchema } from "@/types/booking";
 
 function App() {
+  const { toast } = useToast();
   const { booking: bookings, setBooking } = useBookingContext();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -57,14 +59,26 @@ function App() {
     const { reset } = form;
     reset();
 
-    // toast({
-    //   title: "You submitted the following values:",
-    //   description: (
-    //     <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-    //       <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-    //     </pre>
-    //   ),
-    // });
+    toast({
+      title: "Booking Created Succesfully",
+      description: (
+        <div className="flex flex-col gap-1">
+          <span>
+            {`Congratulations you've scheduled a unforgivable trip to ${data.destination}`}
+          </span>
+          <div>
+            <span className="font-bold">{`from - ${format(
+              data.startDate as Date,
+              "PPPP"
+            )}`}</span>
+            <span className="font-bold">{`to - ${format(
+              data.endDate as Date,
+              "PPPP"
+            )}`}</span>
+          </div>
+        </div>
+      ),
+    });
   }
 
   function onEditItem(item: BookingType) {
