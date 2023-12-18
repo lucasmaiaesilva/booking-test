@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import { CalendarCheck2, CalendarX2 } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
 import { BookingType } from "@/types/booking";
 import { Button } from "@/components/ui/button";
 import { Trash2, Pencil } from "lucide-react";
@@ -13,12 +14,20 @@ export const DetailsList = ({
   indexEdited,
 }: BookingRenderProps) => {
   const { booking, setBooking } = useBookingContext();
+  const { toast } = useToast();
 
   const handleEditItem = (item: BookingType) => {
     onEditItem(item);
   };
   const handleRemoveItem = (id: string) => {
     setBooking((prev: BookingType[]) => prev.filter((item) => item.id !== id));
+    toast({
+      className: cn(
+        "top-0 right-0 flex fixed md:max-w-[420px] md:top-4 md:right-4"
+      ),
+      variant: "destructive",
+      title: `Booking deleted succesfully`,
+    });
   };
 
   if (booking?.length === 0) {
