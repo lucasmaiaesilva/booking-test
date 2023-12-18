@@ -25,8 +25,6 @@ export const DetailsList = ({
     return <EmptyState text="No booking data" />;
   }
 
-  console.log({ indexEdited });
-
   return (
     <>
       <ul>

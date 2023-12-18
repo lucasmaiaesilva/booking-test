@@ -27,7 +27,7 @@ function App() {
   });
 
   const { formState, watch } = form;
-  const { isSubmitting } = formState;
+  const { isSubmitting, errors } = formState;
   const id = watch("id");
   const index = bookings.findIndex((booking) => booking.id === id);
 
@@ -90,6 +90,8 @@ function App() {
     setValue("endDate", item.endDate);
   }
 
+  console.log({ errors });
+
   return (
     <div className="min-h-[100dvh] flex flex-col">
       <Header />
@@ -99,7 +101,7 @@ function App() {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="relative z-20 flex items-center w-full h-full bg-white shadow-2xl -mt-60 px-7 lg:-mt-28 lg:h-28 lg:rounded-3xl rounded-xl"
+              className="relative z-20 flex items-center w-full h-full py-6 bg-white shadow-2xl -mt-60 px-7 lg:-mt-28 lg:rounded-3xl rounded-xl"
             >
               <div className="flex flex-col w-full gap-6 pb-8 mt-10 lg:mt-0 lg:flex-row lg:p-0">
                 <FormField
@@ -109,6 +111,7 @@ function App() {
                     <InputSelect
                       value={field.value}
                       onChange={field.onChange}
+                      errorMessage={errors?.destination}
                     />
                   )}
                 />
@@ -120,6 +123,7 @@ function App() {
                       value={field.value}
                       onChange={field.onChange}
                       placeholderText="Check-in Date"
+                      // error
                     />
                   )}
                 />
@@ -132,6 +136,7 @@ function App() {
                       value={field.value}
                       onChange={field.onChange}
                       placeholderText="Check-out Date"
+                      // error
                     />
                   )}
                 />
