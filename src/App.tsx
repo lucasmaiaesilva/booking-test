@@ -13,6 +13,7 @@ import { InputSelect } from "@/components/ui/input-select";
 import { BookingDetails } from "@/components/ui/booking-details";
 import { useBookingContext } from "@/hooks/booking";
 import { BookingType, FormSchema } from "@/types/booking";
+import { cn } from "./lib/utils";
 
 function App() {
   const { toast } = useToast();
@@ -63,6 +64,9 @@ function App() {
     reset();
 
     toast({
+      className: cn(
+        "top-0 right-0 flex fixed md:max-w-[420px] md:top-4 md:right-4"
+      ),
       title: `Booking ${isEditMode ? "updated" : "created"} succesfully`,
       description: (
         <div className="flex flex-col gap-1">
