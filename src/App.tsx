@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { isBefore, isValid } from "date-fns";
 import * as z from "zod";
 import { v4 as uuid } from "uuid";
 import { format } from "date-fns";
@@ -29,6 +30,8 @@ function App() {
   const { formState, watch } = form;
   const { isSubmitting, errors } = formState;
   const id = watch("id");
+  const startDate = watch("startDate");
+  const endDate = watch("endDate");
   const index = bookings.findIndex((booking) => booking.id === id);
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
@@ -90,7 +93,17 @@ function App() {
     setValue("endDate", item.endDate);
   }
 
-  // console.log({ errors });
+  // validation start-date > end-date
+  const errorDatesHandler = (key: "startDate" | "endDate") => {
+    if (isValid(startDate) && isValid(endDate)) {
+      if (isBefore(endDate as Date, startDate as Date)) {
+        return "Check-in date cannot be after the Check-out date.";
+      } else {
+        return errors[key]?.message;
+      }
+    }
+    return errors[key]?.message;
+  };
 
   return (
     <div className="min-h-[100dvh] flex flex-col">
@@ -111,7 +124,7 @@ function App() {
                     <InputSelect
                       value={field.value}
                       onChange={field.onChange}
-                      errorMessage={errors?.destination}
+                      errorMessage={errors?.destination?.message}
                     />
                   )}
                 />
@@ -123,7 +136,7 @@ function App() {
                       value={field.value}
                       onChange={field.onChange}
                       placeholderText="Check-in Date"
-                      errorMessage={errors?.startDate}
+                      errorMessage={errorDatesHandler("startDate")}
                     />
                   )}
                 />
@@ -136,7 +149,7 @@ function App() {
                       value={field.value}
                       onChange={field.onChange}
                       placeholderText="Check-out Date"
-                      errorMessage={errors?.endDate}
+                      errorMessage={errorDatesHandler("endDate")}
                     />
                   )}
                 />

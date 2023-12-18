@@ -1,6 +1,5 @@
 import { format, subDays } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-import { FieldError } from "react-hook-form";
 import {
   Popover,
   PopoverTrigger,
@@ -14,7 +13,7 @@ type InputCalendar = {
   placeholderText: string;
   value: Date | null;
   onChange: (value: Date | null) => void;
-  errorMessage?: FieldError;
+  errorMessage?: string;
 };
 
 export const InputCalendar = ({
@@ -50,7 +49,7 @@ export const InputCalendar = ({
         </PopoverContent>
       </Popover>
       {errorMessage ? (
-        <span className="text-sm text-red-400">{`${errorMessage.message}`}</span>
+        <span className="text-sm text-red-400">{errorMessage}</span>
       ) : null}
     </div>
   );

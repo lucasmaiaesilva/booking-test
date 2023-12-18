@@ -9,12 +9,11 @@ import {
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { places } from "@/utils/places";
-import { FieldError } from "react-hook-form";
 
 type InputSelect = {
   value: string;
   onChange: (value: string) => void;
-  errorMessage?: FieldError;
+  errorMessage?: string;
 };
 
 export const InputSelect = ({ value, onChange, errorMessage }: InputSelect) => {
@@ -38,7 +37,7 @@ export const InputSelect = ({ value, onChange, errorMessage }: InputSelect) => {
         </SelectContent>
       </Select>
       {errorMessage ? (
-        <span className="text-sm text-red-400">{`${errorMessage.message}`}</span>
+        <span className="text-sm text-red-400">{errorMessage}</span>
       ) : null}
     </div>
   );
