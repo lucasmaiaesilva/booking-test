@@ -5,8 +5,14 @@ export const FormSchema = z.object({
   destination: z.string().refine((val) => val.length !== 0, {
     message: "You must choose a place first",
   }),
-  startDate: z.date().nullable(),
-  endDate: z.date().nullable(),
+  startDate: z
+    .date()
+    .nullable()
+    .refine((val) => val !== null, { message: "Please input a Check-in date" }),
+  endDate: z
+    .date()
+    .nullable()
+    .refine((val) => val !== null, { message: "Please input a Check-in date" }),
 });
 
 export type BookingType = z.infer<typeof FormSchema>;

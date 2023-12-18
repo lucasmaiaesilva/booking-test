@@ -90,7 +90,7 @@ function App() {
     setValue("endDate", item.endDate);
   }
 
-  console.log({ errors });
+  // console.log({ errors });
 
   return (
     <div className="min-h-[100dvh] flex flex-col">
@@ -123,7 +123,7 @@ function App() {
                       value={field.value}
                       onChange={field.onChange}
                       placeholderText="Check-in Date"
-                      // error
+                      errorMessage={errors?.startDate}
                     />
                   )}
                 />
@@ -136,7 +136,7 @@ function App() {
                       value={field.value}
                       onChange={field.onChange}
                       placeholderText="Check-out Date"
-                      // error
+                      errorMessage={errors?.endDate}
                     />
                   )}
                 />
