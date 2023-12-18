@@ -13,7 +13,7 @@ import { InputSelect } from "@/components/ui/input-select";
 import { BookingDetails } from "@/components/ui/booking-details";
 import { useBookingContext } from "@/hooks/booking";
 import { BookingType, FormSchema } from "@/types/booking";
-import { cn } from "./lib/utils";
+import { cn } from "@/lib/utils";
 import { hasDuplicateBooking } from "@/utils/booking";
 
 function App() {
@@ -87,7 +87,7 @@ function App() {
       description: (
         <div className="flex flex-col gap-1">
           <span>
-            {`Congratulations you've scheduled a unforgivable trip to ${data.destination}`}
+            {`Congratulations you've scheduled an unforgetable trip to ${data.destination}`}
           </span>
           <div className="flex flex-col">
             <span className="font-bold">{`From - ${format(
