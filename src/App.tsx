@@ -14,6 +14,7 @@ import { BookingDetails } from "@/components/ui/booking-details";
 import { useBookingContext } from "@/hooks/booking";
 import { BookingType, FormSchema } from "@/types/booking";
 import { cn } from "./lib/utils";
+import { hasDuplicateBooking } from "@/utils/booking";
 
 function App() {
   const { toast } = useToast();
@@ -41,6 +42,21 @@ function App() {
       ...data,
       id: isEditMode ? data.id : uuid(),
     };
+
+    // ignore item that is being edited in the list to be validated
+    const bookingList = !isEditMode
+      ? bookings
+      : bookings.filter((booking) => booking.id !== data.id);
+
+    if (hasDuplicateBooking(bookingList, payload)) {
+      return toast({
+        className: cn(
+          "top-0 right-0 flex fixed md:max-w-[420px] md:top-4 md:right-4"
+        ),
+        variant: "destructive",
+        title: `You already have a trip in this same range of dates.`,
+      });
+    }
 
     if (!isEditMode) {
       // create new booking
