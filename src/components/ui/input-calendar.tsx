@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { format, subDays } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import {
@@ -22,6 +23,8 @@ export const InputCalendar = ({
   onChange,
   errorMessage,
 }: InputCalendar) => {
+  const [isClosedCalendarDropdown, setIsClosedCalendarDropdown] =
+    useState<boolean>(true);
   return (
     <div className="flex flex-col w-full">
       <Popover>
@@ -29,6 +32,7 @@ export const InputCalendar = ({
           <Button
             variant="outline"
             size="lg"
+            onClick={() => setIsClosedCalendarDropdown(false)}
             className={cn(
               "w-full pl-3 text-left font-normal py-7",
               !value && "text-muted-foreground",
@@ -39,10 +43,17 @@ export const InputCalendar = ({
             <CalendarIcon className="w-4 h-4 ml-auto opacity-50" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-auto p-0" align="center">
+        <PopoverContent
+          className="w-auto p-0"
+          align="center"
+          closed={isClosedCalendarDropdown}
+        >
           <Calendar
             mode="single"
-            onSelect={(e) => onChange(e as Date)}
+            onSelect={(e) => {
+              onChange(e as Date);
+              setIsClosedCalendarDropdown(true);
+            }}
             disabled={(date) => date < subDays(new Date(), 1)}
             initialFocus
           />
