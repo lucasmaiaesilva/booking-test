@@ -63,18 +63,18 @@ function App() {
     reset();
 
     toast({
-      title: "Booking Created Succesfully",
+      title: `Booking ${isEditMode ? "updated" : "created"} succesfully`,
       description: (
         <div className="flex flex-col gap-1">
           <span>
             {`Congratulations you've scheduled a unforgivable trip to ${data.destination}`}
           </span>
-          <div>
-            <span className="font-bold">{`from - ${format(
+          <div className="flex flex-col">
+            <span className="font-bold">{`From - ${format(
               data.startDate as Date,
               "PPPP"
             )}`}</span>
-            <span className="font-bold">{`to - ${format(
+            <span className="font-bold">{`To - ${format(
               data.endDate as Date,
               "PPPP"
             )}`}</span>
