@@ -8,7 +8,7 @@ describe("Create Booking", () => {
   });
 
   it("Should Create New Booking-Mobile", () => {
-    cy.viewport("iphone-8");
+    cy.viewport("iphone-x");
     cy.visit("/");
 
     cy.createBooking(1, 10, 20);
@@ -25,7 +25,7 @@ describe("Create Booking", () => {
   });
 
   it("Fail-Create booking without fill input place - Mobile", () => {
-    cy.viewport("iphone-8");
+    cy.viewport("iphone-x");
     cy.visit("/");
 
     cy.selectDate("start-date", 10);
@@ -45,7 +45,7 @@ describe("Create Booking", () => {
   });
 
   it("Fail-Create booking without fill start date - Mobile", () => {
-    cy.viewport("iphone-8");
+    cy.viewport("iphone-x");
     cy.visit("/");
 
     cy.selectPlace(3);
@@ -65,7 +65,7 @@ describe("Create Booking", () => {
   });
 
   it("Fail-Create booking without fill end date - Mobile", () => {
-    cy.viewport("iphone-8");
+    cy.viewport("iphone-x");
     cy.visit("/");
 
     cy.selectPlace(3);

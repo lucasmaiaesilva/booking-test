@@ -53,7 +53,10 @@ export const DetailsList = ({
             )}
           >
             {indexEdited === index ? (
-              <div className="absolute inset-0 bg-white/80" />
+              <div
+                className="absolute inset-0 bg-white/80"
+                aria-label="Booking thats being edited"
+              />
             ) : null}
             <div className="flex-1 min-w-0">
               <h2 className="text-lg font-semibold leading-7 text-slate-600 sm:truncate sm:text-xl sm:tracking-tight">
