@@ -58,8 +58,8 @@ Feel free to explore the application and test its functionality in a live enviro
 ## Features Developed so far
 
 - [ ] Create Test E2E happy and unhappy paths
-- [ ] Write a documentation for the project
-- [ ] Close Calendar soon as the user click on a date
+- [x] Write a documentation for the project
+- [x] Close Calendar soon as the user click on a date
 - [ ] Scroll to form when the user clicks on an item to be edited
 - [x] Handle errors gracefully - handle not only the happy path, but all edge cases for the implemented functionalities
 - [x] Validate Duplicated entry
