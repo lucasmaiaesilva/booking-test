@@ -65,6 +65,9 @@ The E2E tests for unhappy paths cover the following scenarios:
 - Integration between dates ( conflicted date - start and end dates “wrapping” another booking )-Desktop
 - Integration between dates ( conflicted date - start and end dates “wrapping” another booking )-Mobile
 
+## Deployed version
+
+You can have the access to the published version at:
 https://booking-test-lucasmaiaesilva.vercel.app
 
 Feel free to explore the application and test its functionality in a live environment.
