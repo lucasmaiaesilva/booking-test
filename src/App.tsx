@@ -54,7 +54,12 @@ function App() {
           "top-0 right-0 flex fixed md:max-w-[420px] md:top-4 md:right-4"
         ),
         variant: "destructive",
-        title: `You already have a trip in this same range of dates.`,
+        title: `Conflicted Dates`,
+        description: (
+          <span aria-label="Conflicted Dates">
+            You already have a trip in this same range of dates.
+          </span>
+        ),
       });
     }
 
