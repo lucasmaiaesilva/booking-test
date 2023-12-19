@@ -26,7 +26,12 @@ export const DetailsList = ({
         "top-0 right-0 flex fixed md:max-w-[420px] md:top-4 md:right-4"
       ),
       variant: "destructive",
-      title: `Booking deleted succesfully`,
+      title: `Booking deleted.`,
+      description: (
+        <span aria-label="Booking Deleted Succesfully">
+          Your booking was deleted successfully.
+        </span>
+      ),
     });
   };
 
@@ -99,6 +104,7 @@ export const DetailsList = ({
                   type="button"
                   onClick={() => handleRemoveItem(item.id)}
                   className="flex items-center gap-1 px-2"
+                  aria-label="Delete Booking Button"
                 >
                   <Trash2 className="w-4 h-4" />
                   Remove

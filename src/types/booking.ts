@@ -17,7 +17,7 @@ export const FormSchema = z
       .date()
       .nullable()
       .refine((val) => val !== null, {
-        message: "Please input a Check-in date",
+        message: "Please input a Check-out date",
       }),
   })
   .refine((val) => {
