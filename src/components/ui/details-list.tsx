@@ -87,6 +87,7 @@ export const DetailsList = ({
                   type="button"
                   onClick={() => handleEditItem(item)}
                   className="flex items-center gap-1 px-2"
+                  aria-label="Edit Booking Button"
                 >
                   <Pencil className="w-4 h-4" />
                   Edit

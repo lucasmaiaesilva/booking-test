@@ -18,3 +18,20 @@ Cypress.Commands.add(
     cy.get('button[name="day"]').contains(`${day}`).click();
   }
 );
+
+Cypress.Commands.add(
+  "createBooking",
+  (placeIndex: number, startMonthDay: number, endMonthDay: number) => {
+    cy.selectPlace(placeIndex);
+    cy.selectDate("start-date", startMonthDay);
+    cy.selectDate("end-date", endMonthDay);
+    cy.get('[aria-label="Submit Booking Info"]').should(
+      "contains.text",
+      "Add Destination"
+    );
+    cy.get('[aria-label="Submit Booking Info"]').click();
+
+    cy.get('[aria-label="Booking Created Succesfully"]').should("exist");
+    cy.get('[aria-label="Booking List"] li').should("not.have.length", 0);
+  }
+);

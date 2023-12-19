@@ -87,7 +87,9 @@ function App() {
       description: (
         <div
           className="flex flex-col gap-1"
-          aria-label="Booking Created Succesfully"
+          aria-label={`Booking ${
+            isEditMode ? "Updated" : "Created"
+          } Succesfully`}
         >
           <span>
             {`Congratulations you've scheduled an unforgetable trip to ${data.destination}`}

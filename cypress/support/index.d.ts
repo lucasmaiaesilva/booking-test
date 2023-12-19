@@ -10,5 +10,10 @@ declare namespace Cypress {
 
     selectPlace(placeIndex: number): Chainable<Window>;
     selectDate(type: "start-date" | "end-date", day: number): Chainable<Window>;
+    createBooking(
+      placeIndex: number,
+      startMonthDay: number,
+      endMonthDay: number
+    ): Chainable<Window>;
   }
 }
