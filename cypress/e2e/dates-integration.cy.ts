@@ -53,7 +53,7 @@ describe("Dates Integration", () => {
     cy.get('[aria-label="Conflicted Dates"]').should("exist");
   });
 
-  it("- [ ] Fail-Integration between dates ( conflicted date - end date between existing dates )-Desktop", () => {
+  it("Fail-Integration between dates ( conflicted date - end date between existing dates )-Desktop", () => {
     cy.viewport("macbook-16");
     cy.visit("/");
 
@@ -66,7 +66,7 @@ describe("Dates Integration", () => {
     cy.get('[aria-label="Conflicted Dates"]').should("exist");
   });
 
-  it("- [ ] Fail-Integration between dates ( conflicted date - end date between existing dates )-Mobile", () => {
+  it("Fail-Integration between dates ( conflicted date - end date between existing dates )-Mobile", () => {
     cy.viewport("iphone-x");
     cy.visit("/");
 
@@ -74,6 +74,32 @@ describe("Dates Integration", () => {
     cy.selectPlace(3);
     cy.selectDate("start-date", 8);
     cy.selectDate("end-date", 15);
+    cy.get('[aria-label="Submit Booking Info"]').click();
+
+    cy.get('[aria-label="Conflicted Dates"]').should("exist");
+  });
+
+  it("Fail-Integration between dates ( conflicted date - start and end dates “wrapping” another booking )-Desktop", () => {
+    cy.viewport("macbook-16");
+    cy.visit("/");
+
+    cy.createBooking(2, 10, 20);
+    cy.selectPlace(3);
+    cy.selectDate("start-date", 8);
+    cy.selectDate("end-date", 22);
+    cy.get('[aria-label="Submit Booking Info"]').click();
+
+    cy.get('[aria-label="Conflicted Dates"]').should("exist");
+  });
+
+  it("Fail-Integration between dates ( conflicted date - start and end dates “wrapping” another booking )-Mobile", () => {
+    cy.viewport("iphone-x");
+    cy.visit("/");
+
+    cy.createBooking(2, 10, 20);
+    cy.selectPlace(3);
+    cy.selectDate("start-date", 8);
+    cy.selectDate("end-date", 22);
     cy.get('[aria-label="Submit Booking Info"]').click();
 
     cy.get('[aria-label="Conflicted Dates"]').should("exist");
