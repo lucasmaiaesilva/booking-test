@@ -64,7 +64,9 @@ export const InputCalendar = ({
         </PopoverContent>
       </Popover>
       {errorMessage ? (
-        <span className="text-sm text-red-400">{errorMessage}</span>
+        <span className="text-sm text-red-400" aria-label={errorMessage}>
+          {errorMessage}
+        </span>
       ) : null}
     </div>
   );
