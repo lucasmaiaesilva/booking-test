@@ -29,7 +29,7 @@ End-to-end (E2E) tests have been implemented to ensure the application functions
 To run the E2E tests, follow these steps:
 
 - Start the local development server by running the command pnpm dev.
-- Open Cypress by running the command pnpm cypress:open.
+- Open Cypress by running the command pnpm test:open or pnpm test:run to run in the background.
 - Click on the desired test file from the Cypress interface to execute the tests.
 - Observe the test results in the Cypress runner window.
 
@@ -37,19 +37,33 @@ To run the E2E tests, follow these steps:
 
 The E2E tests for happy paths cover the following scenarios:
 
-- Booking creation with valid input: This test verifies that a booking can be successfully created with all the required fields provided accurately.
-- Editing an existing booking: This test ensures that an existing booking can be edited without any issues.
-- Deleting a booking: This test validates the functionality to delete an existing booking from the scheduler.
+- Should Create New Booking-Desktop
+- Should Create New Booking-Mobile
+- Should Edit Booking-Desktop
+- Should Edit Booking-Mobile
+- Should Highlight the booking that's being edited-Desktop
+- Should Highlight the booking that's being edited-Mobile
+- Should Delete Existing Booking-Desktop
+- Should Delete Existing Booking-Mobile
 
 ### Unhappy Paths
 
 The E2E tests for unhappy paths cover the following scenarios:
 
-- Booking creation with missing required fields: This test checks that attempting to create a booking with missing required fields results in appropriate error messages.
-- Editing an existing booking with invalid input: This test verifies that attempting to edit an existing booking with invalid input displays the relevant error messages.
-- Deleting a booking that does not exist: This test ensures that attempting to delete a non-existent booking is handled gracefully.
-- Deployed Version
-- The deployed version of the Booking Scheduler project can be accessed at the following URL:
+- Create booking without fill input place - Desktopp
+- Create booking without fill input place - Mobilep
+- Create booking without fill start date - Desktopp
+- Create booking without fill start date - Mobilep
+- Create booking without fill end date - Desktopp
+- Create booking without fill end date - Mobilep
+- Integration between dates ( start date > end-date )-Desktop
+- Integration between dates ( start date > end-date )-Mobile
+- Integration between dates ( conflicted date - start date between existing dates )-Desktop
+- Integration between dates ( conflicted date - start date between existing dates )-Mobile
+- Integration between dates ( conflicted date - end date between existing dates )-Desktop
+- Integration between dates ( conflicted date - end date between existing dates )-Mobile
+- Integration between dates ( conflicted date - start and end dates “wrapping” another booking )-Desktop
+- Integration between dates ( conflicted date - start and end dates “wrapping” another booking )-Mobile
 
 https://booking-test-lucasmaiaesilva.vercel.app
 
@@ -57,7 +71,7 @@ Feel free to explore the application and test its functionality in a live enviro
 
 ## Features Developed so far
 
-- [ ] Create Test E2E happy and unhappy paths
+- [x] Create Test E2E happy and unhappy paths
 - [x] Write a documentation for the project
 - [x] Close Calendar soon as the user click on a date
 - [ ] Scroll to form when the user clicks on an item to be edited
