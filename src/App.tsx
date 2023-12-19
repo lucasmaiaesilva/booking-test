@@ -85,7 +85,10 @@ function App() {
       ),
       title: `Booking ${isEditMode ? "updated" : "created"} succesfully`,
       description: (
-        <div className="flex flex-col gap-1">
+        <div
+          className="flex flex-col gap-1"
+          aria-label="Booking Created Succesfully"
+        >
           <span>
             {`Congratulations you've scheduled an unforgetable trip to ${data.destination}`}
           </span>
@@ -157,6 +160,7 @@ function App() {
                       onChange={field.onChange}
                       placeholderText="Check-in Date"
                       errorMessage={errorDatesHandler("startDate")}
+                      cyLabel="select-start-date"
                     />
                   )}
                 />
@@ -170,6 +174,7 @@ function App() {
                       onChange={field.onChange}
                       placeholderText="Check-out Date"
                       errorMessage={errorDatesHandler("endDate")}
+                      cyLabel="select-end-date"
                     />
                   )}
                 />
@@ -179,6 +184,7 @@ function App() {
                   className="py-7"
                   type="submit"
                   disabled={isSubmitting}
+                  aria-label="Submit Booking Info"
                 >
                   {id !== "" ? "Update Destination" : "Add Destination"}
                 </Button>

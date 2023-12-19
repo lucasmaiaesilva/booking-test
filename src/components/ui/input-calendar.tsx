@@ -15,6 +15,7 @@ type InputCalendar = {
   value: Date | null;
   onChange: (value: Date | null) => void;
   errorMessage?: string;
+  cyLabel?: string;
 };
 
 export const InputCalendar = ({
@@ -22,6 +23,7 @@ export const InputCalendar = ({
   placeholderText,
   onChange,
   errorMessage,
+  cyLabel,
 }: InputCalendar) => {
   const [isClosedCalendarDropdown, setIsClosedCalendarDropdown] =
     useState<boolean>(true);
@@ -38,6 +40,7 @@ export const InputCalendar = ({
               !value && "text-muted-foreground",
               errorMessage ? "border-red-400" : ""
             )}
+            aria-label={`${cyLabel}-trigger`}
           >
             {value ? format(value, "PPP") : <span>{placeholderText}</span>}
             <CalendarIcon className="w-4 h-4 ml-auto opacity-50" />
@@ -47,6 +50,7 @@ export const InputCalendar = ({
           className="w-auto p-0"
           align="center"
           closed={isClosedCalendarDropdown}
+          aria-label={`${cyLabel}-content`}
         >
           <Calendar
             mode="single"

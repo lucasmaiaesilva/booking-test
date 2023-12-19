@@ -36,7 +36,7 @@ export const DetailsList = ({
 
   return (
     <>
-      <ul>
+      <ul aria-label="Booking List">
         {booking?.map((item: BookingType, index) => (
           <li
             key={item.id}

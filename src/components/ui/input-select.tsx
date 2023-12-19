@@ -22,14 +22,19 @@ export const InputSelect = ({ value, onChange, errorMessage }: InputSelect) => {
       <Select value={value} onValueChange={onChange}>
         <SelectTrigger
           className={cn("py-7", errorMessage ? "border-red-400" : "")}
+          aria-label="select-place-trigger"
         >
           <SelectValue placeholder="Where are you going?" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
             <SelectLabel>choose a place</SelectLabel>
-            {places.map((place) => (
-              <SelectItem key={place} value={place}>
+            {places.map((place, index) => (
+              <SelectItem
+                key={place}
+                value={place}
+                aria-label={`select-place-option-${index + 1}`}
+              >
                 {place}
               </SelectItem>
             ))}
