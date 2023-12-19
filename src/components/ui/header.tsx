@@ -5,7 +5,7 @@ export function Header() {
         <span className="text-xl text-white">easyBooking</span>
       </header>
 
-      <div className="bg-[#ca4d66] absolute inset-0 opacity-50" />
+      <div className="absolute inset-0 opacity-50 bg-sky-500" />
 
       <div className="absolute inset-0 bottom-0 left-0 right-0 z-20 mx-auto">
         <div className="container items-center h-full lg:grid lg:grid-cols-2 lg:gap-4">
